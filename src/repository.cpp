@@ -3,7 +3,7 @@
 
 #include "repository.h"
 namespace nanogit {
-int initialize_repository(std::filesystem::path &current_path) {
+int initialize_repository(const std::filesystem::path &current_path) {
 
   const std::filesystem::path repo_dir = current_path / repoDirName;
 
@@ -16,14 +16,14 @@ int initialize_repository(std::filesystem::path &current_path) {
 
   std::filesystem::create_directories(repo_dir / "objects", ec);
   if (ec) {
-    std::cerr << "Unexpected error in creating" << repo_dir / "objects" << " : \n"
+    std::cerr << "Unexpected error in creating" << (repo_dir / "objects").string() << " : \n"
               << ec.message() << "\n";
     return 1;
   }
 
   std::filesystem::create_directories(repo_dir / "refs" / "heads", ec);
   if (ec) {
-    std::cerr << "Unexpected error in creating" << repo_dir / "refs" / "heads" << " : \n"
+    std::cerr << "Unexpected error in creating" << (repo_dir / "refs" / "heads").string() << " : \n"
               << ec.message() << "\n";
     std::cerr << "deleting any files created by nanogit " << "\n";
     std::filesystem::remove_all(repo_dir);

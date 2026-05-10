@@ -1,5 +1,4 @@
 #include <iostream>
-#include <sstream>
 #include <string>
 
 #include "commands/init.h"
@@ -19,7 +18,7 @@ int main(int argc, char **argv) {
   std::string command = argv[1];
 
   if (command == "init") {
-    nanogit::commands::init(argc - 2, argv + 2);
+    return nanogit::commands::init(argc - 2, argv + 2);
   } else {
     std::cerr << "unknown command : " << command << "\ntype nanogit -h to get help on using nanogit" << "\n";
     return 1;

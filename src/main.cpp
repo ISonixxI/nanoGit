@@ -1,11 +1,6 @@
-#include <functional>
-#include <iomanip>
 #include <iostream>
 #include <sstream>
 #include <string>
-
-#include <openssl/sha.h>
-#include <zlib.h>
 
 #include "commands/init.h"
 #include "repository.h"
@@ -18,16 +13,16 @@ int main(int argc, char **argv) {
                  "commands:\n"
                  "  init [path]    Create an empty nanogit repository\n";
 
-    return 0;
+    return 1;
   }
 
-  std::filesystem::path path = std::filesystem::current_path();
   std::string command = argv[1];
 
   if (command == "init") {
     nanogit::commands::init(argc - 2, argv + 2);
   } else {
-    std::cerr << "unknown command : " << command << "\ntype nanogit -h to get help on using nanogit" << std::endl;
+    std::cerr << "unknown command : " << command << "\ntype nanogit -h to get help on using nanogit" << "\n";
+    return 1;
   }
 
   return 0;

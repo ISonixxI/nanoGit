@@ -10,7 +10,13 @@ add_compile_options(-Wall -Wextra -Wpedantic)
 find_package(ZLIB REQUIRED)
 find_package(OpenSSL REQUIRED)
 
-add_executable(nanogit src/main.cpp)
+add_executable(nanogit
+    src/main.cpp
+    src/repository.cpp
+    src/commands/init.cpp
+)
+
+target_include_directories(nanogit PRIVATE src)
 
 target_link_libraries(nanogit PRIVATE
     ZLIB::ZLIB

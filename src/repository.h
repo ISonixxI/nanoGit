@@ -1,10 +1,10 @@
 #pragma once
-
 #include <filesystem>
-#include <string>
-
+#include <fstream>
+#include <iostream>
 namespace nanogit {
 
-    const char* repoDirName = ".nanogit";
+inline constexpr const char *repoDirName = ".nanogit";
+int initialize_repository(std::filesystem::path &current_path);
 
-}
+} // namespace nanogit
